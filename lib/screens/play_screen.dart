@@ -1,28 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../bloc/home_bloc.dart';
+import '../bloc/play_bloc.dart';
 import '../widget/my_barrier.dart';
 import '../widget/my_bird.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+class PlayScreen extends StatelessWidget {
+  const PlayScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Provider<HomeBloc>(
-      create: (context) => HomeBloc(),
+    return Provider<PlayBloc>(
+      create: (context) => PlayBloc(),
       dispose: (context, bloc) => bloc.dispose(),
       builder: (context, _) {
         return StreamBuilder<bool>(
             initialData: false,
-            stream: context.read<HomeBloc>().isGameStartedStream,
+            stream: context.read<PlayBloc>().isGameStartedStream,
             builder: (context, isGameStartedSnapshot) {
               return GestureDetector(
                 onTap: () {
                   isGameStartedSnapshot.data!
-                      ? context.read<HomeBloc>().jump()
-                      : context.read<HomeBloc>().startGame(context);
+                      ? context.read<PlayBloc>().jump()
+                      : context.read<PlayBloc>().startGame(context);
                 },
                 child: Scaffold(
                   body: Column(
@@ -35,14 +35,14 @@ class HomePage extends StatelessWidget {
                             children: [
                               StreamBuilder<double>(
                                   initialData: 0,
-                                  stream: context.read<HomeBloc>().birdYStream,
+                                  stream: context.read<PlayBloc>().birdYStream,
                                   builder: (context, birdYSnapshot) {
                                     return MyBird(
                                       birdY: birdYSnapshot.data!,
                                       birdHeight:
-                                          context.read<HomeBloc>().birdHeight,
+                                          context.read<PlayBloc>().birdHeight,
                                       birdWidth:
-                                          context.read<HomeBloc>().birdWidth,
+                                          context.read<PlayBloc>().birdWidth,
                                     );
                                   }),
                               Container(
@@ -58,14 +58,14 @@ class HomePage extends StatelessWidget {
                               StreamBuilder<List<double>>(
                                   initialData: const [2.0, 2 + 1.5, 5.0, 6.5],
                                   stream:
-                                      context.read<HomeBloc>().barrierXStream,
+                                      context.read<PlayBloc>().barrierXStream,
                                   builder: (context, snapshot) {
                                     return MyBarrier(
                                       barrierX: snapshot.data![0],
                                       barrierWidth:
-                                          context.read<HomeBloc>().barrierWidth,
+                                          context.read<PlayBloc>().barrierWidth,
                                       barrierHeight: context
-                                          .read<HomeBloc>()
+                                          .read<PlayBloc>()
                                           .barrierHeight[0][0],
                                       isThisBottomBarrier: false,
                                     );
@@ -73,14 +73,14 @@ class HomePage extends StatelessWidget {
                               StreamBuilder<List<double>>(
                                   initialData: const [2.0, 2 + 1.5, 5.0, 6.5],
                                   stream:
-                                      context.read<HomeBloc>().barrierXStream,
+                                      context.read<PlayBloc>().barrierXStream,
                                   builder: (context, snapshot) {
                                     return MyBarrier(
                                       barrierX: snapshot.data![0],
                                       barrierWidth:
-                                          context.read<HomeBloc>().barrierWidth,
+                                          context.read<PlayBloc>().barrierWidth,
                                       barrierHeight: context
-                                          .read<HomeBloc>()
+                                          .read<PlayBloc>()
                                           .barrierHeight[0][1],
                                       isThisBottomBarrier: true,
                                     );
@@ -88,14 +88,14 @@ class HomePage extends StatelessWidget {
                               StreamBuilder<List<double>>(
                                   initialData: const [2.0, 2 + 1.5, 5.0, 6.5],
                                   stream:
-                                      context.read<HomeBloc>().barrierXStream,
+                                      context.read<PlayBloc>().barrierXStream,
                                   builder: (context, barrierXTwoSnapshot) {
                                     return MyBarrier(
                                       barrierX: barrierXTwoSnapshot.data![1],
                                       barrierWidth:
-                                          context.read<HomeBloc>().barrierWidth,
+                                          context.read<PlayBloc>().barrierWidth,
                                       barrierHeight: context
-                                          .read<HomeBloc>()
+                                          .read<PlayBloc>()
                                           .barrierHeight[1][0],
                                       isThisBottomBarrier: false,
                                     );
@@ -103,14 +103,14 @@ class HomePage extends StatelessWidget {
                               StreamBuilder<List<double>>(
                                   initialData: const [2.0, 2 + 1.5, 5.0, 6.5],
                                   stream:
-                                      context.read<HomeBloc>().barrierXStream,
+                                      context.read<PlayBloc>().barrierXStream,
                                   builder: (context, barrierXTwoSnapshot) {
                                     return MyBarrier(
                                       barrierX: barrierXTwoSnapshot.data![1],
                                       barrierWidth:
-                                          context.read<HomeBloc>().barrierWidth,
+                                          context.read<PlayBloc>().barrierWidth,
                                       barrierHeight: context
-                                          .read<HomeBloc>()
+                                          .read<PlayBloc>()
                                           .barrierHeight[1][1],
                                       isThisBottomBarrier: true,
                                     );
@@ -118,14 +118,14 @@ class HomePage extends StatelessWidget {
                               StreamBuilder<List<double>>(
                                   initialData: const [2.0, 2 + 1.5, 5.0, 6.5],
                                   stream:
-                                      context.read<HomeBloc>().barrierXStream,
+                                      context.read<PlayBloc>().barrierXStream,
                                   builder: (context, barrierXTwoSnapshot) {
                                     return MyBarrier(
                                       barrierX: barrierXTwoSnapshot.data![2],
                                       barrierWidth:
-                                          context.read<HomeBloc>().barrierWidth,
+                                          context.read<PlayBloc>().barrierWidth,
                                       barrierHeight: context
-                                          .read<HomeBloc>()
+                                          .read<PlayBloc>()
                                           .barrierHeight[2][0],
                                       isThisBottomBarrier: false,
                                     );
@@ -133,14 +133,14 @@ class HomePage extends StatelessWidget {
                               StreamBuilder<List<double>>(
                                   initialData: const [2.0, 2 + 1.5, 5.0, 6.5],
                                   stream:
-                                      context.read<HomeBloc>().barrierXStream,
+                                      context.read<PlayBloc>().barrierXStream,
                                   builder: (context, barrierXTwoSnapshot) {
                                     return MyBarrier(
                                       barrierX: barrierXTwoSnapshot.data![2],
                                       barrierWidth:
-                                          context.read<HomeBloc>().barrierWidth,
+                                          context.read<PlayBloc>().barrierWidth,
                                       barrierHeight: context
-                                          .read<HomeBloc>()
+                                          .read<PlayBloc>()
                                           .barrierHeight[2][1],
                                       isThisBottomBarrier: true,
                                     );
@@ -173,7 +173,7 @@ class HomePage extends StatelessWidget {
                                   StreamBuilder<int>(
                                       initialData: 0,
                                       stream: context
-                                          .read<HomeBloc>()
+                                          .read<PlayBloc>()
                                           .counterStream,
                                       builder: (context, counterSnapshot) {
                                         return Text(
@@ -199,7 +199,7 @@ class HomePage extends StatelessWidget {
                                   StreamBuilder<int>(
                                       initialData: 0,
                                       stream: context
-                                          .read<HomeBloc>()
+                                          .read<PlayBloc>()
                                           .bestScoreStream,
                                       builder: (context, bestScoreSnapshot) {
                                         return Text(

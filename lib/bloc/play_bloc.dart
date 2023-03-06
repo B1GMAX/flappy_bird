@@ -4,7 +4,7 @@ import 'package:flappy_bird/utils/preference.dart';
 import 'package:flutter/material.dart';
 import 'package:rxdart/rxdart.dart';
 
-class HomeBloc {
+class PlayBloc {
   final _birdYController = BehaviorSubject<double>();
   final _isGameStartedController = BehaviorSubject<bool>();
   final _barrierXController = BehaviorSubject<List<double>>();
@@ -44,7 +44,7 @@ class HomeBloc {
   int counter = 0;
   int bestScore = 0;
 
-  HomeBloc() {
+  PlayBloc() {
     _getBestScoreFromPreference();
   }
 

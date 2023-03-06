@@ -1,6 +1,10 @@
+import 'package:flappy_bird/l10n/l10n.dart';
+import 'package:flappy_bird/provider/provide.dart';
+import 'package:flappy_bird/screens/home_screen.dart';
 import 'package:flutter/material.dart';
-
-import 'page/home_page.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -9,15 +13,29 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flappy Bird',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const HomePage(),
+    return ChangeNotifierProvider(
+      create: (BuildContext context) => LocaleProvider(),
+      builder: (context, child) {
+        final provider = Provider.of<LocaleProvider>(context);
+
+        return MaterialApp(
+          title: 'Flappy Bird',
+          theme: ThemeData(
+            primarySwatch: Colors.blue,
+          ),
+          locale: provider.locale,
+          localizationsDelegates: const [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: L10n.all,
+          home: const HomeScreen(),
+        );
+      },
     );
   }
 }

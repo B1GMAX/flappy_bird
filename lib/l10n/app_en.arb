@@ -1,0 +1,26 @@
+{
+  "allMoneys": "All money from viewing ads goes to the Armed Forces",
+  "@allMoneys": {
+    "description": "All money from viewing ads goes to the Armed Forces"
+  },
+  "usePhone": "Use your smartphone to help the Armed Forces",
+  "@usePhone": {
+    "description": "Use your smartphone to help the Armed Forces"
+  },
+  "choseCategory": "Choose a category",
+  "@choseCategory": {
+    "description": "Choose a category"
+  },
+  "view": "View ad",
+  "@view": {
+    "description": "View ad"
+  },
+  "play": "Play",
+  "@play": {
+    "description": "Play"
+  },
+  "start": "Start",
+  "@start": {
+    "description": "Start"
+  }
+}
